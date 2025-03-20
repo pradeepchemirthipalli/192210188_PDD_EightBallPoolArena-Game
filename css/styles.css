@@ -1,0 +1,564 @@
+/* Reset defaults with enhanced base styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', 'Roboto', 'Arial', sans-serif; /* Gaming font for professionalism */
+    -webkit-font-smoothing: antialiased; /* Smooth text rendering */
+}
+
+/* Body with pool table-inspired background */
+body {
+    padding: 8px;
+    background: radial-gradient(circle at center, #0d1b2a, #1b263b); /* Darker, richer gradient */
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    color: #e0e6f0; /* Softer, futuristic white */
+}
+
+/* Mode Selection Container */
+.mode-selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(13, 27, 42, 0.9), rgba(27, 38, 59, 0.9)),
+                url("../images/pool_felt_texture.jpg") no-repeat center center fixed;
+    background-size: cover;
+    gap: 35px; /* Increased for spacing */
+    color: #fff;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Deeper shadow */
+    animation: fadeIn 1.2s ease-in;
+    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.9); /* Inner glow */
+}
+
+.mode-selection-container h1 {
+    font-size: 64px; /* Larger for impact */
+    font-weight: 900; /* Bolder */
+    letter-spacing: 4px; /* Wider spacing */
+    color: #00ff99; /* Neon green for gaming vibe */
+    text-transform: uppercase;
+    text-shadow: 0 0 25px rgba(0, 255, 153, 0.7), 0 0 5px rgba(0, 0, 0, 0.8); /* Neon glow */
+}
+
+.mode-selection-container p {
+    font-size: 28px; /* Larger */
+    font-weight: 400; /* Slightly bolder */
+    color: #e0e6f0;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Select elements with stylish design */
+#game-mode, #difficulty {
+    width: 280px; /* Wider for premium feel */
+    padding: 16px 25px; /* More padding */
+    border: 2px solid #00ff99; /* Neon green border */
+    border-radius: 15px; /* Softer corners */
+    font-size: 18px;
+    background: rgba(13, 27, 42, 0.9); /* Darker, futuristic base */
+    color: #fff;
+    outline: none;
+    box-shadow: 0 6px 25px rgba(0, 255, 153, 0.3); /* Neon shadow */
+    transition: all 0.3s ease;
+}
+
+#game-mode:hover, #difficulty:hover {
+    background: rgba(27, 38, 59, 0.9);
+    border-color: #00ffcc; /* Lighter green on hover */
+    transform: translateY(-3px); /* Subtle lift */
+    box-shadow: 0 10px 30px rgba(0, 255, 153, 0.5);
+}
+
+#difficulty {
+    opacity: 0.7;
+}
+
+#difficulty:disabled {
+    background: rgba(13, 27, 42, 0.5);
+    cursor: not-allowed;
+    border-color: #3e4b66;
+}
+
+#difficulty:enabled {
+    opacity: 1;
+}
+
+/* Green Button with animation */
+.green-button {
+    border: none;
+    background: linear-gradient(135deg, #00ff99, #00cc66); /* Neon green gradient */
+    border-radius: 15px;
+    font-size: 24px; /* Larger */
+    font-weight: 700;
+    width: 280px;
+    height: 65px; /* Taller */
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(0, 255, 153, 0.6); /* Stronger glow */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.green-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.green-button:hover::after {
+    width: 350px;
+    height: 350px;
+}
+
+.green-button:hover {
+    background: linear-gradient(135deg, #00ffcc, #00ff99);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 255, 153, 0.8);
+}
+
+.green-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 153, 0.4);
+}
+
+/* Main Game Container */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 40px;
+    padding-top: 60px;
+    background: rgba(13, 27, 42, 0.95); /* Darker, richer */
+    border-radius: 25px; /* Softer corners */
+    overflow: hidden;
+    animation: slideIn 0.8s ease-out;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9); /* Deeper shadow */
+    border: 2px solid #00ff99; /* Neon accent */
+}
+
+/* Menus Container */
+.menus-container {
+    width: clamp(220px, 25%, 300px);
+    padding: 25px;
+    background: rgba(13, 27, 42, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0, 255, 153, 0.3); /* Neon glow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    border: 2px solid #00ff99;
+}
+
+/* Main Game Board */
+.pool-image {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background: url("../images/pool_table.png") no-repeat center center;
+    background-size: contain;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9); /* Dramatic shadow */
+    border: 8px solid #1b263b; /* Darker frame */
+}
+
+/* Canvas Adjustments */
+#myCanvas {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    max-width: 1140px;
+    max-height: 605px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: none;
+    border-radius: 12px;
+}
+
+/* Logo */
+.logo {
+    opacity: 0.95;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(100px, 12vw, 140px);
+    height: clamp(100px, 12vw, 140px);
+    filter: drop-shadow(0 0 30px #00ff99); /* Stronger neon glow */
+    animation: glowPulse 2s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+    0% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 20px #00ff99); }
+    50% { transform: translate(-50%, -50%) scale(1.05); filter: drop-shadow(0 0 35px #00ff99); }
+    100% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 20px #00ff99); }
+}
+
+/* Shot Power Container */
+.shot-power-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px; /* More spacing */
+    margin: 25px 0;
+}
+
+/* Power Meter Container */
+.shot-power {
+    border: 3px solid #00ff99; /* Neon green */
+    width: 35px; /* Wider */
+    height: 220px; /* Taller */
+    position: relative;
+    border-radius: 20px;
+    background: rgba(13, 27, 42, 0.9);
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 255, 153, 0.4);
+}
+
+/* Power Meter */
+#power-meter {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, #ff0066, #ffcc00, #00ff99); /* Vibrant gaming gradient */
+    border-radius: 17px;
+    transition: height 0.3s ease, background 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 255, 153, 0.7); /* Neon glow */
+}
+
+/* Power Label */
+span.power {
+    display: block;
+    text-align: center;
+    font-size: 20px; /* Larger */
+    color: #ffcc00; /* Neon yellow */
+    text-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
+}
+
+/* Power Cue */
+.power-cue {
+    width: 240px; /* Wider */
+    height: 10px; /* Thicker */
+    background: linear-gradient(to right, #ffcc00, #ffff66); /* Neon yellow gradient */
+    transform-origin: left center;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(255, 204, 0, 0.6);
+    pointer-events: none;
+    position: relative;
+}
+
+.power-cue::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px; /* Larger */
+    height: 16px;
+    background: #00ccff; /* Neon blue */
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.8);
+}
+
+/* Players */
+.players {
+    margin: 25px 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.player1, .player2 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 12px 20px; /* More padding */
+    background: rgba(13, 27, 42, 0.9);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 2px solid #00ff99; /* Neon border */
+    box-shadow: 0 5px 20px rgba(0, 255, 153, 0.3);
+}
+
+.player1:hover, .player2:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 255, 153, 0.5);
+}
+
+#player1Indicator, #player2Indicator {
+    width: 32px; /* Larger */
+    height: 32px;
+    border-radius: 50%;
+    border: 3px solid #ffcc00; /* Neon yellow */
+    margin-left: 12px;
+    background: #fff;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
+    transition: all 0.3s ease;
+}
+
+.player1.active #player1Indicator,
+.player2.active #player2Indicator {
+    background: #00ff99; /* Neon green */
+    box-shadow: 0 0 20px rgba(0, 255, 153, 0.8);
+}
+
+/* Buttons */
+.main-menu {
+    padding: 18px 0; /* More padding */
+    text-align: center;
+    display: block;
+    border: none;
+    background: linear-gradient(135deg, #00ff99, #00cc66);
+    border-radius: 15px;
+    font-size: 22px;
+    font-weight: 700;
+    width: 100%;
+    max-width: 240px; /* Wider */
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(0, 255, 153, 0.6);
+    transition: all 0.3s ease;
+}
+
+.main-menu:hover {
+    background: linear-gradient(135deg, #00ffcc, #00ff99);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 255, 153, 0.8);
+}
+
+.main-menu:active {
+    transform: translateY(2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 153, 0.4);
+}
+
+/* Rules */
+.pool-rules {
+    display: none;
+    padding: 35px; /* More padding */
+    color: #e0e6f0;
+    background: rgba(13, 27, 42, 0.95);
+    border-radius: 25px;
+    margin: 100px auto 0;
+    width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 2px solid #00ff99; /* Neon green */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9);
+    animation: slideDown 0.5s ease-out;
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: #00ff99 rgba(13, 27, 42, 0.95); /* Neon scrollbar */
+}
+
+/* Custom scrollbar for Webkit */
+.pool-rules::-webkit-scrollbar {
+    width: 10px;
+}
+
+.pool-rules::-webkit-scrollbar-track {
+    background: rgba(13, 27, 42, 0.95);
+    border-radius: 10px;
+}
+
+.pool-rules::-webkit-scrollbar-thumb {
+    background: #00ff99;
+    border-radius: 10px;
+}
+
+.pool-rules::-webkit-scrollbar-thumb:hover {
+    background: #00ffcc;
+}
+
+.pool-rules h2 {
+    text-align: center;
+    font-size: 36px; /* Larger */
+    margin-bottom: 25px;
+    color: #ffcc00; /* Neon yellow */
+    text-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
+}
+
+.pool-rules button {
+    float: right;
+    font-weight: 700;
+    border: none;
+    border-radius: 50%;
+    background: #ff0066; /* Neon pink */
+    height: 35px; /* Larger */
+    width: 35px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 0, 102, 0.6);
+}
+
+.pool-rules button:hover {
+    background: #ff3399;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 0, 102, 0.8);
+}
+
+/* Rules Category */
+.rules-category {
+    margin-top: 25px;
+    list-style-type: none;
+    font-size: 20px; /* Larger */
+    color: #e0e6f0;
+}
+
+.rules-category li {
+    margin-top: 18px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.rules-category li::before {
+    content: "•";
+    color: #00ff99;
+    position: absolute;
+    left: 0;
+    font-size: 28px; /* Larger bullet */
+}
+
+.rules {
+    font-size: 18px; /* Larger */
+    padding-left: 25px;
+    color: #e0e6f0;
+}
+
+.rules li {
+    margin-top: 10px;
+}
+
+/* Canvas Texts */
+.canvas-texts {
+    color: #00ff99; /* Neon green */
+    text-align: center;
+    width: 400px; /* Wider */
+    height: 70px; /* Taller */
+    font-family: 'Orbitron', 'Arial', sans-serif; /* Gaming font */
+    font-size: 52px; /* Larger */
+    font-weight: 900;
+    text-shadow: 0 0 20px rgba(0, 255, 153, 0.8), 0 0 5px rgba(0, 0, 0, 0.9);
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    animation: bounceIn 0.6s ease-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounceIn {
+    0% { transform: translate(-50%, -60%) scale(0.5); opacity: 0; }
+    60% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes glowPulse {
+    0% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 20px #00ff99); }
+    50% { transform: translate(-50%, -50%) scale(1.05); filter: drop-shadow(0 0 35px #00ff99); }
+    100% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 20px #00ff99); }
+}
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+    .main-container {
+        flex-direction: column;
+        padding-top: 40px;
+        gap: 20px;
+    }
+
+    .pool-image {
+        margin: 0 auto;
+        max-width: 90%;
+    }
+
+    .menus-container {
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .pool-rules {
+        width: 90%;
+        max-height: 70vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mode-selection-container h1 {
+        font-size: 48px;
+    }
+
+    .mode-selection-container p {
+        font-size: 24px;
+    }
+
+    #game-mode, #difficulty, .green-button {
+        width: 220px;
+        font-size: 16px;
+        height: 55px;
+    }
+
+    .green-button {
+        font-size: 20px;
+    }
+
+    .shot-power-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .power-cue {
+        width: 180px;
+    }
+
+    .player1, .player2 {
+        justify-content: center;
+    }
+
+    .main-menu {
+        max-width: 200px;
+    }
+
+    .canvas-texts {
+        font-size: 40px;
+        width: 300px;
+    }
+}
