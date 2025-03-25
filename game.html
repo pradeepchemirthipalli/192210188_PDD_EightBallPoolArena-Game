@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <title>8-ball Pool - Mode Selection</title>
 </head>
@@ -29,14 +28,15 @@
                 <div class="shot-power">
                     <div id="power-meter"></div>
                 </div>
-                
             </div>
             <div class="players">
                 <div class="player1">
+                    <span id="player1Name">Player 1</span>
                     <img id="player1Indicator" src="path/to/indicator1.png" alt="Player 1 Indicator"/>
                     <span id="p1">Player 1: 0</span>
                 </div>
                 <div class="player2">
+                    <span id="player2Name">Player 2</span>
                     <img id="player2Indicator" src="path/to/indicator2.png" alt="Player 2 Indicator"/>
                     <span id="p2">Player 2: 0</span>
                 </div>
@@ -87,6 +87,40 @@
         let gameMode = "PvP";
         let difficulty = "Medium";
 
+        // Function to get URL parameters
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // List of random names for Player 2
+        const randomNames = [
+            "Alex", "Jordan", "Taylor", "Morgan", "Casey",
+            "Riley", "Skyler", "Peyton", "Quinn", "Logan",
+            "Avery", "Cameron", "Dakota", "Emerson", "Finley"
+        ];
+
+        // Function to generate a random name for Player 2
+        function getRandomName(excludeName) {
+            let randomName;
+            do {
+                randomName = randomNames[Math.floor(Math.random() * randomNames.length)];
+            } while (randomName === excludeName); // Ensure Player 2's name is different
+            return randomName;
+        }
+
+        // Get Player 1's name from URL
+        const player1Name = getQueryParam('player1') || "Player 1";
+        const player2Name = getRandomName(player1Name);
+
+        // Update the DOM with player names
+        document.getElementById('player1Name').textContent = player1Name;
+        document.getElementById('player2Name').textContent = player2Name;
+
+        // Update the score display with names
+        document.getElementById('p1').textContent = `${player1Name}: 0`;
+        document.getElementById('p2').textContent = `${player2Name}: 0`;
+
         // Update difficulty selection based on game mode
         document.getElementById('game-mode').addEventListener('change', function() {
             const mode = this.value;
@@ -120,5 +154,6 @@
             // No auto-load, wait for user input
         };
     </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'925ba8eefc92b03f',t:'MTc0Mjg3Njg4OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
