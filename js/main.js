@@ -1,7 +1,6 @@
 var canvas;
 var ctx;
 var numberOfBalls = 7;
-var poolTableImage;
 var friction = 0.992;
 var animate;
 var p1, p2;
@@ -81,7 +80,7 @@ function Pool() {
 
         if (gameMode === "PvC") {
             this.player2.isComputer = true;
-            window.difficulty = difficulty; // Set global difficulty for animate.js
+            window.difficulty = difficulty;
         }
 
         p1Indicator = document.getElementById('player1Indicator');
@@ -89,8 +88,8 @@ function Pool() {
         p1 = document.getElementById('p1');
         p2 = document.getElementById('p2');
 
-        p1.innerHTML = `Player 1: ${this.player1.score}`;
-        p2.innerHTML = gameMode === "PvC" ? `Computer: ${this.player2.score}` : `Player 2: ${this.player2.score}`;
+        p1.innerHTML = `${document.getElementById('player1Name').textContent}: ${this.player1.score}`;
+        p2.innerHTML = gameMode === "PvC" ? `Computer: ${this.player2.score}` : `${document.getElementById('player2Name').textContent}: ${this.player2.score}`;
     }
 
     this.addPowerAdjustListeners = function() {
