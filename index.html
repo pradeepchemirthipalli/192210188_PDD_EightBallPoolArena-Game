@@ -32,8 +32,9 @@
                 .then((result) => {
                     const user = result.user;
                     console.log('User Info:', user);
-                    alert(`Welcome ${user.displayName}!`);
-                    window.location.href = "game.html";
+                    const playerName = user.displayName || "Player 1";
+                    alert(`Welcome ${playerName}!`);
+                    window.location.href = `game.html?player1=${encodeURIComponent(playerName)}`;
                 })
                 .catch((error) => {
                     console.error('Error during Facebook login:', error.message);
@@ -46,8 +47,9 @@
                 .then((result) => {
                     const user = result.user;
                     console.log('User Info:', user);
-                    alert(`Welcome ${user.displayName}!`);
-                    window.location.href = "game.html";
+                    const playerName = user.displayName || "Player 1";
+                    alert(`Welcome ${playerName}!`);
+                    window.location.href = `game.html?player1=${encodeURIComponent(playerName)}`;
                 })
                 .catch((error) => {
                     console.error('Error during Google login:', error.message);
@@ -56,8 +58,9 @@
         };
 
         window.guestLogin = function () {
-            console.log('Guest login selected');
-            window.location.href = "game.html";
+            const playerName = prompt("Enter your name (or leave blank for 'Guest'):", "Guest") || "Guest";
+            console.log('Guest login selected:', playerName);
+            window.location.href = `game.html?player1=${encodeURIComponent(playerName)}`;
         };
     </script>
 </head>
